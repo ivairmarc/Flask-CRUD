@@ -1,6 +1,6 @@
 class Config:
     user = 'root'
-    password = 'comspirace'
+    password = ''
     database_db = 'user_db'
     host = 'localhost'
 
