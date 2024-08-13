@@ -1,4 +1,9 @@
-from flask import Blueprint, request, redirect, url_for, render_template
+from flask import (
+    Blueprint, 
+    request, 
+    redirect, 
+    url_for, 
+    render_template)
 from .models import User
 from app.app import db
 
