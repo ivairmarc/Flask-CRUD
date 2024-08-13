@@ -1,28 +1,8 @@
-from flask import Blueprint, request, redirect, url_for, render_template_string
+from flask import Blueprint, request, redirect, url_for, render_template
 from .models import User
-from . import db
+from app.app import db
 
 main = Blueprint('main', __name__)
-
-# HTML básico para o formulário de cadastro
-form_html = """
-<!doctype html>
-<html>
-<head><title>Cadastro de Usuário</title></head>
-<body>
-<h2>Cadastro de Usuário</h2>
-<form method="post">
-    <label for="username">Nome de Usuário:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
-    <label for="password">Senha:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
-    <input type="submit" value="Cadastrar">
-</form>
-</body>
-</html>
-"""
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -37,4 +17,10 @@ def index():
         
         return redirect(url_for('main.index'))
     
-    return render_template_string(form_html)
+    return render_template('cadastro.html')
+
+
+@main.route('/users')
+def list_users():
+    users = User.query.all()
+    return render_template('list_users.html', users=users)

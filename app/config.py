@@ -1,8 +1,7 @@
-class Config:
-    user = 'root'
-    password = ''
-    database_db = 'user_db'
-    host = 'localhost'
+import sys
+import os
+import configparser
 
-    SQLALCHEMY_DATABASE_URI = f'mysql://{user}:{password}@{host}/{database_db}'
+class Config:
+    SQLALCHEMY_DATABASE_URI = (f"mysql+pymysql://root:comspirace@127.0.0.1:3306/crud_flask?charset=utf8")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
