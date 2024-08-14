@@ -6,7 +6,6 @@ from flask import (
     render_template)
 from .models import Users, Groups
 from .forms import NewUser
-
 from app.database import db_session
 
 
@@ -16,6 +15,7 @@ main = Blueprint('main', __name__)
 @main.teardown_request
 def shutdown_session(exception=None):
     db_session.remove()
+
 
 @main.errorhandler(404)
 def page_not_found(error):
@@ -53,8 +53,6 @@ def new_user():
         password = request.form['password']
         status = request.form['status']
         group = request.form['group']
-        
-        
         new_user = Users(name=name, email=email, password=password, status=status, group=group)
         db_session.add(new_user)
         db_session.commit()
