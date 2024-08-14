@@ -3,7 +3,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 
-engine = create_engine(f'mysql+pymysql://root:pass@127.0.0.1:3306/digital_leads_dados?charset=utf8', echo=False)
+engine = create_engine(f'mysql+pymysql://root:comspirace@127.0.0.1:3306/digital_leads_dados?charset=utf8', echo=False)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
@@ -16,3 +16,4 @@ def init_db():
     # you will have to import them first before calling init_db()
     import app.models
     Base.metadata.create_all(bind=engine)
+    

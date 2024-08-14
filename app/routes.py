@@ -5,6 +5,7 @@ from flask import (
     url_for, 
     render_template)
 from .models import Users, Groups
+from .forms import NewUser
 
 from app.database import db_session
 
@@ -26,8 +27,26 @@ def index():
     return render_template('base.html')
 
 
+@main.route('/users/create2', methods=['GET', 'POST'])
+def new_user2():
+    form = NewUser(request.form)
+
+    if request.method == 'POST' and form.validate():
+        
+        user = Users(form.name.data, form.email.data, form.password.data, form.status.data, form.group.data) 
+
+        new_user = Users(user)
+        db_session.add(new_user)
+        db_session.commit()
+        
+        return redirect(url_for('main.list_users'))
+    
+    return render_template('new_user2.html', form=form)
+
+
 @main.route('/users/create', methods=['GET', 'POST'])
 def new_user():
+    groups = Groups.query.all()
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -42,7 +61,7 @@ def new_user():
         
         return redirect(url_for('main.list_users'))
     
-    return render_template('new_user.html')
+    return render_template('new_user.html', groups=groups)
 
 
 # para chave add /<param>

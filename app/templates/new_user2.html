@@ -16,11 +16,25 @@
 
     <label for="group">Grupo:</label>
     <select id="group" class="mb-2">
-        {% for g in groups %}
-        <option value="{{ g.id }}">{{ g.name }}</option>
-        {% endfor %}
+        <option value="1"></option>
     </select><br>
     <input type="submit" value="Cadastrar">
+</form>
+
+{% from "_formhelpers.html" import render_field %}
+<form method=post action="/users/create">
+  <dl>
+    {{ render_field(form.name) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm) }}
+    {{ render_field(form.status) }}
+    <div>
+        {{ form.group.label }}<br>
+        {{ form.group() }}<br>
+    </div>
+  </dl>
+  <p><input type=submit value=Register>
 </form>
 
 {% endblock %}
