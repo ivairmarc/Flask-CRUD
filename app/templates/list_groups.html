@@ -2,11 +2,11 @@
 
 
 {% block content %}
-    <div class="section col-md-5">
-        <h5 class="card-title">Lista de usuários</h5>
-        {% if users|length > 0 %}
+    
+        <h5 class="card-title">Lista de Grupos</h5>
+        {% if groups|length > 0 %}
         <p class="card-text">
-        Aqui está a lista de <code>Usuários</code>
+        Aqui está a lista de <code>Grupos</code>
         cadastrados.
         </p>
         <table class="table table-hover">
@@ -18,10 +18,10 @@
             </tr>
             </thead>
             <tbody>
-            {% for user in users %}
+            {% for group in groups %}
                 <tr>
-                    <td>{{ user.username }}</td> 
-                    <td>{{ user.email }}</td>
+                    <td>{{ group.name }}</td> 
+                    <td>{{ group.notes }}</td>
                     <td><a href="" class="btn"><i class="fas fa-fw fa-wrench"></i></a></td>                                  
                     <td><a href="" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
                 </tr>
@@ -30,15 +30,15 @@
     </table>
     {% else %}
     <div class="text-center mt-5 mb-5 jumbotron">
-        <h5>Nenhuma <code>Categoria</code> cadastrado ainda.</h5>
+        <h5>Nenhum <code>Grupo</code> cadastrado ainda.</h5>
     </div>
     {% endif %}
     <hr />
     <div class="text-right">
         <a class="btn btn-primary"
-        href="">
-        Cadastrar Categorias
+        href="{{ url_for('main.new_group') }}">
+        Cadastrar Grupos
         </a>
     </div>
-</div>
+
 {% endblock %}

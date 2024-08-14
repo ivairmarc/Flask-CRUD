@@ -1,6 +1,21 @@
+class Config(object):
+    DEBUG = False
+    TESTING = False
+
+    SECRET_KEY = "KLASLDAPOKPK33434KPOEQOK22LMqwe#!@#347447"
+
+    SESSION_COOKIE_SECURE = True
 
 
-class Config:
+class ProductionConfig(Config):
+    pass
 
-    SQLALCHEMY_DATABASE_URI = (f"mysql+pymysql://root:pass@127.0.0.1:3306/crud_flask?charset=utf8")
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SESSION_COOKIE_SECURE = False
+
+
+class TestingConfig(Config):
+    TESTING = True
+    

@@ -1,16 +1,12 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
 
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
     
     # Configuração do banco de dados
-    app.config.from_object('app.config.Config')
-    
-    # Inicializando o SQLAlchemy
-    db.init_app(app)
+    app.config.from_object('app.config.DevelopmentConfig')
     
     # Registrando as rotas
     from .routes import main

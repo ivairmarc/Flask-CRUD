@@ -4,11 +4,20 @@
 <h2>Cadastro de Usuário</h2>
 <form method="post">
     <label for="username">Nome de Usuário:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
+    <input type="text" id="name" name="name" required><br><br>
     <label for="email">Email:</label><br>
     <input type="email" id="email" name="email" required><br><br>
     <label for="password">Senha:</label><br>
     <input type="password" id="password" name="password" required><br><br>
+    
+
+    <input type="checkbox" id="status" name="status" value="1">
+    <label for="status"> Ativo</label><br>
+
+    <label for="group">Status:</label>
+    <select id="group">
+        <option value="1"></option>
+    </select>
     <input type="submit" value="Cadastrar">
 </form>
 </body>

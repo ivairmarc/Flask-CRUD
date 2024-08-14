@@ -23,8 +23,133 @@
 
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Gestor <sup>Iv</sup></div>
+            </a>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#users"
+                    aria-expanded="true" aria-controls="users">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
+                <div id="users" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url_for('main.list_users') }}">Usuários</a>
+                        <a class="collapse-item" href="{{ url_for('main.new_user') }}">Novo Usuário</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#group"
+                    aria-expanded="true" aria-controls="group">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Grupos</span>
+                </a>
+                <div id="group" class="collapse" aria-labelledby="headingTwo" data-parent="#group">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url_for('main.list_groups') }}">Grupos</a>
+                        <a class="collapse-item" href="{{ url_for('main.new_group') }}">Novo Grupo</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Novo</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product"
+                    aria-expanded="true" aria-controls="product">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Produtos</span>
+                </a>
+                <div id="product" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="">Produtos</a>
+                        <a class="collapse-item" href="">Cadastrar Produto</a>
+                        <a class="collapse-item" href="">Marcas</a>
+                    </div>
+                </div>
+            </li>
+        
+
+        </ul>
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                <h1 class="h3 mb-0 text-gray-800">
+                   
+                </h1>
+                {% block btn %}
+                {% endblock %}
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-auto">
+                    <div class="card">
+                    <div class="card-body">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+     
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
+    <!-- Custom scripts for all pages-->
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+    
+     
+
+    
 
 </body>
 </html>
