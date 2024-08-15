@@ -1,33 +1,26 @@
+from models.models import Users, Groups
+from routes.forms import NewUser
+from database.database import db_session
 from flask import (
     Blueprint, 
     request, 
     redirect, 
     url_for, 
     render_template)
-from app.database import db_session
-from .models import Users, Groups
-from .forms import NewUser
 
+user_route = Blueprint('users', __name__)
 
-main = Blueprint('main', __name__)
-
-
-@main.teardown_request
+@user_route.teardown_request
 def shutdown_session(exception=None):
     db_session.remove()
 
 
-@main.errorhandler(404)
+@user_route.errorhandler(404)
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
 
 
-@main.route('/')
-def index():
-    return render_template('base.html')
-
-
-@main.route('/users/create2', methods=['GET', 'POST'])
+@user_route.route('/create2', methods=['GET', 'POST'])
 def new_user2():
     form = NewUser(request.form)
 
@@ -39,12 +32,12 @@ def new_user2():
         db_session.add(new_user)
         db_session.commit()
         
-        return redirect(url_for('main.list_users'))
+        return redirect(url_for('user_route.list_users'))
     
     return render_template('new_user2.html', form=form)
 
 
-@main.route('/users/create', methods=['GET', 'POST'])
+@user_route.route('/create', methods=['GET', 'POST'])
 def new_user():
     groups = Groups.query.all()
     if request.method == 'POST':
@@ -59,41 +52,24 @@ def new_user():
         db_session.add(new_user)
         db_session.commit()
         
-        return redirect(url_for('main.list_users'))
+        return redirect(url_for('user_route.list_users'))
     
     return render_template('new_user.html', groups=groups)
 
 
 # para chave add /<param>
-@main.route('/users')
+@user_route.route('/')
 def list_users():
     users = Users.query.all()
     group = Groups.query.all()
     return render_template('list_user.html', users=users, group=group)
 
 
-@main.route('/groups/create', methods=['GET', 'POST'])
-def new_group():
-    if request.method == 'POST':
-        name = request.form['name']
-        note = request.form['note']
-        status = request.form['status']
-                
-        new_group = Groups(name=name, note=note, status=status)
-        db_session.add(new_group)
-        db_session.commit()
-        
-        return redirect(url_for('main.list_groups'))
-    
-    return render_template('new_group.html')
+@user_route.route('/<int:user_id>/edit', methods=['PUT'])
+def update_user(user_id):
+    ...
 
 
-@main.route('/groups')
-def list_groups():
-    groups = Groups.query.all()
-    return render_template('list_groups.html', groups=groups)
-
-
-@main.route('/groups/edit')
-def edit_group():
+@user_route.route('/<int:user_id>/delete', methods=['DELETE'])
+def delete_user(user_id):
     ...
