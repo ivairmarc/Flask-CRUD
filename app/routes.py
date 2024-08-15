@@ -4,9 +4,9 @@ from flask import (
     redirect, 
     url_for, 
     render_template)
+from app.database import db_session
 from .models import Users, Groups
 from .forms import NewUser
-from app.database import db_session
 
 
 main = Blueprint('main', __name__)

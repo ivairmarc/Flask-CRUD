@@ -10,7 +10,8 @@ from wtforms import (
 )
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Email
-from .models import Groups
+from ..app.models import Groups
+
 
 class NewUser(FlaskForm):
     def __init__(self, *args, **kwargs):

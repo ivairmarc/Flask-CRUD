@@ -1,9 +1,15 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from app.config import Config
 
 
-engine = create_engine(f'mysql+pymysql://root:pass@127.0.0.1:3306/digital_leads_dados?charset=utf8', echo=False)
+conf = Config()
+# Construir a string de conexão
+connection_string = f'{conf.DIALECT}+{conf.DRIVER}://{conf.USERNAME}:{conf.PASSWORD}@{conf.HOST}:{str(conf.PORT)}/{conf.DATABASE}?charset={conf.CHARSET}'
+
+# Configurar o SQLAlchemy
+engine = create_engine(connection_string, echo=False)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
