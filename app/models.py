@@ -21,7 +21,7 @@ class Users(Base):
     name = Column(String(100), nullable=False)
     password = Column(String(100), nullable=False)
     status = Column(Integer)
-    group = Column(Integer, ForeignKey('groups.id'))
+    group = Column(Integer, ForeignKey('groups.id'), nullable=False)
 
     def __repr__(self):
         return f'<User {self.name}>'

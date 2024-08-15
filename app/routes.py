@@ -51,9 +51,11 @@ def new_user():
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
-        status = request.form['status']
-        group = request.form.get('group')
-        new_user = Users(name=name, email=email, password=password, status=status, group=group)
+        status = request.form.get('status')
+        if status == None:
+            status = 0
+        group_id = request.form.get('group')
+        new_user = Users(name=name, email=email, password=password, status=status, group=group_id)
         db_session.add(new_user)
         db_session.commit()
         
