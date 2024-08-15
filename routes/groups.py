@@ -1,5 +1,5 @@
 from database.database import db_session
-from models.models import Groups
+from database.models.group_model import Groups
 from flask import (
     Blueprint, 
     request, 
