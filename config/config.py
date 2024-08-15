@@ -9,7 +9,7 @@ class Config(object):
     DIALECT = 'mysql'
     DRIVER = 'pymysql'
     USERNAME = 'root'
-    PASSWORD = 'comspirace'
+    PASSWORD = ''
     HOST = '127.0.0.1'
     PORT = 3306
     DATABASE = 'digital_leads_dados'
