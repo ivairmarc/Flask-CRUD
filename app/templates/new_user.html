@@ -15,7 +15,7 @@
     <label for="status"> Ativo</label><br>
 
     <label for="group">Grupo:</label>
-    <select id="group" class="mb-2">
+    <select id="group" name="group" class="mb-2">
         {% for g in groups %}
         <option value="{{ g.id }}">{{ g.name }}</option>
         {% endfor %}

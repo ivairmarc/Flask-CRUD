@@ -7,7 +7,7 @@ class Groups(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), nullable=False, unique=True)
     note = Column(String(100))
-    status = Column(Integer())
+    status = Column(Integer)
    
     def __repr__(self):
         return self.name
@@ -16,13 +16,12 @@ class Groups(Base):
 class Users(Base):
     """ status 1 = Ativo """
     __tablename__ = 'users'
-    id = Column(Integer, autoincrement=True)
-    email = Column(String(100), primary_key=True, unique=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String(100), unique=True)
     name = Column(String(100), nullable=False)
     password = Column(String(100), nullable=False)
-    status = Column(Integer())
-    group = Column(Integer(), ForeignKey('groups.id'))
-
+    status = Column(Integer)
+    group = Column(Integer, ForeignKey('groups.id'))
 
     def __repr__(self):
         return f'<User {self.name}>'
@@ -35,7 +34,7 @@ class Products(Base):
     value = Column(Numeric(9, 2))
     upload = Column(String(50))
     download = Column(String(50))
-    status = Column(Integer())
+    status = Column(Integer)
 
     def __repr__(self):
         return {self.plan_name}
@@ -46,7 +45,7 @@ class CommercialOrigin(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), nullable=False, unique=True)
     note = Column(String(100))
-    status = Column(Integer())
+    status = Column(Integer)
 
     def __repr__(self):
         return {self.name}
@@ -61,8 +60,8 @@ class Leads(Base):
     neighborhood = Column(String(100))
     city = Column(String(100))
     state = Column(String(100))
-    product = Column(String(50), ForeignKey('products.id'))
-    commercial_origin = Column(String(50), ForeignKey('commercial_origin.id'))
+    product_lead = Column(Integer, ForeignKey('products.id'))
+    commercial_origin = Column(Integer, ForeignKey('commercial_origin.id'))
     create_at = Column(String(100), ForeignKey('users.email'))
     altered_at = Column(String(100), ForeignKey('users.email'))
 

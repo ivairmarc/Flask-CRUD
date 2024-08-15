@@ -52,7 +52,7 @@ def new_user():
         email = request.form['email']
         password = request.form['password']
         status = request.form['status']
-        group = request.form['group']
+        group = request.form.get('group')
         new_user = Users(name=name, email=email, password=password, status=status, group=group)
         db_session.add(new_user)
         db_session.commit()
@@ -66,7 +66,8 @@ def new_user():
 @main.route('/users')
 def list_users():
     users = Users.query.all()
-    return render_template('list_user.html', users=users)
+    group = Groups.query.all()
+    return render_template('list_user.html', users=users, group=group)
 
 
 @main.route('/groups/create', methods=['GET', 'POST'])
