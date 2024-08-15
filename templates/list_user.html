@@ -36,10 +36,10 @@
                         {% endif %}
                     {% endfor %}
                     
-                    <td><a href="" class="btn"><i class="fas fa-fw fa-wrench"></i></a></td>                                  
-                    <td><a href="" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
+                    <td><a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-wrench"></i></a></td>                                  
+                    <td><a href="{{ url_for('users.delete_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
                 </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
     {% else %}

@@ -1,4 +1,5 @@
-from models.models import Users, Groups
+from database.models.user_model import Users
+from database.models.group_model import Groups
 from routes.forms import NewUser
 from database.database import db_session
 from flask import (
@@ -52,7 +53,7 @@ def new_user():
         db_session.add(new_user)
         db_session.commit()
         
-        return redirect(url_for('user_route.list_users'))
+        #return redirect(url_for('user_route.list_users'))
     
     return render_template('new_user.html', groups=groups)
 

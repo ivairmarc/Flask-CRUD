@@ -20,7 +20,7 @@ def new_group():
         db_session.add(new_group)
         db_session.commit()
         
-        return redirect(url_for('group_route.list_groups'))
+        #return redirect(url_for('group_route.list_groups'))
     
     return render_template('new_group.html')
 
