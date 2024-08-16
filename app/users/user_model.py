@@ -1,4 +1,4 @@
-from database.database import Base
+from app.database import Base
 from sqlalchemy import Column, Integer, ForeignKey, String
 from flask_login import UserMixin
 

@@ -1,5 +1,5 @@
-from database.database import Base
-from sqlalchemy import Column, Integer, ForeignKey, String, Numeric
+from app.database import Base
+from sqlalchemy import Column, Integer, String
 
 
 class CommercialOrigin(Base):

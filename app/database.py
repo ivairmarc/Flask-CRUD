@@ -23,11 +23,11 @@ def init_db():
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
-    import database.models.leads_model
-    import database.models.user_model
-    import database.models.commercial_model
-    import database.models.group_model
-    import database.models.product_model
+    import app.leads.leads_model
+    import app.users.user_model
+    import app.commercial.commercial_model
+    import app.groups.group_model
+    import app.product.product_model
 
 
     Base.metadata.create_all(bind=engine)

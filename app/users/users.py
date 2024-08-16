@@ -1,7 +1,7 @@
-from database.models.user_model import Users
-from database.models.group_model import Groups
-from routes.forms import NewUser
-from database.database import db_session
+from app.users.user_model import Users
+from app.groups.group_model import Groups
+from app.users.forms import NewUser
+from app.database import db_session
 from flask_login import login_user
 from flask import (
     Blueprint, 

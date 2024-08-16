@@ -1,16 +1,14 @@
 from wtforms import (
-    Form, 
     BooleanField, 
     PasswordField, 
     validators, 
-    IntegerField, 
     SelectField, 
     StringField,
-    RadioField
+
 )
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Email
-from database.models.group_model import Groups
+from app.groups.group_model import Groups
 
 
 class NewUser(FlaskForm):
