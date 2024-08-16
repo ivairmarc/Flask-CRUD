@@ -2,7 +2,7 @@ from app.users.user_model import Users
 from app.groups.group_model import Groups
 from app.users.forms import NewUser
 from app.database import db_session
-from flask_login import login_user
+from flask_login import LoginManager, login_user
 from flask import (
     Blueprint, 
     request, 
@@ -12,12 +12,14 @@ from flask import (
 
 
 user_route = Blueprint('users', __name__)
+login_manager = LoginManager()
 
 
-"""def user_loader(id):
+@login_manager.user_loader
+def user_loader(id):
     user = db_session.query(Users).filter_by(id=id).first()
     return user
-"""
+
 
 @user_route.teardown_request
 def shutdown_session(exception=None):
