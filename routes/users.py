@@ -14,10 +14,10 @@ from flask import (
 user_route = Blueprint('users', __name__)
 
 
-def user_loader(id):
+"""def user_loader(id):
     user = db_session.query(Users).filter_by(id=id).first()
     return user
-
+"""
 
 @user_route.teardown_request
 def shutdown_session(exception=None):
