@@ -3,4 +3,5 @@ __pycache__/
 
 */__pycache__/
 .env
-create_database.py
+*/create_database.py
+database/create_database.py

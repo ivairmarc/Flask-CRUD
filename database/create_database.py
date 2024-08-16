@@ -10,3 +10,4 @@ def create_db():
 
     my_cursor = mydb.cursor()
     my_cursor.execute(f"CREATE DATABASE IF NOT EXISTS digital_leads_dados")
+    
