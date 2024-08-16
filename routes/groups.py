@@ -7,6 +7,7 @@ from flask import (
     url_for, 
     render_template)
 
+
 group_route = Blueprint('groups', __name__)
 
 @group_route.route('/create', methods=['GET', 'POST'])
@@ -20,7 +21,7 @@ def new_group():
         db_session.add(new_group)
         db_session.commit()
         
-        #return redirect(url_for('group_route.list_groups'))
+        return redirect(url_for('groups.list_groups'))
     
     return render_template('new_group.html')
 

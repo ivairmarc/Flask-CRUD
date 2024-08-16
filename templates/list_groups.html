@@ -13,7 +13,7 @@
             <thead>
             <tr>      
                 <th scope="col">Usuario</th>
-                <th>E-mail</th>
+                <th>Observação</th>
                 <th>Deletar</th>
             </tr>
             </thead>
@@ -21,7 +21,7 @@
             {% for group in groups %}
                 <tr>
                     <td>{{ group.name }}</td> 
-                    <td>{{ group.notes }}</td>
+                    <td>{{ group.note }}</td>
                     <td><a href="" class="btn"><i class="fas fa-fw fa-wrench"></i></a></td>                                  
                     <td><a href="" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
                 </tr>

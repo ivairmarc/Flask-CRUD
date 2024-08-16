@@ -1,12 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from config.config import Config
+from dotenv import load_dotenv
+import os
 
 
-conf = Config()
+load_dotenv()
+
 # Construir a string de conexão
-connection_string = f'{conf.DIALECT}+{conf.DRIVER}://{conf.USERNAME}:{conf.PASSWORD}@{conf.HOST}:{str(conf.PORT)}/{conf.DATABASE}?charset={conf.CHARSET}'
+connection_string = os.getenv('DATABASE_URI', '')
 
 # Configurar o SQLAlchemy
 engine = create_engine(connection_string, echo=False)
@@ -15,6 +17,7 @@ db_session = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
+
 
 def init_db():
     # import all modules here that might define models so that
@@ -25,6 +28,7 @@ def init_db():
     import database.models.commercial_model
     import database.models.group_model
     import database.models.product_model
+
 
     Base.metadata.create_all(bind=engine)
     

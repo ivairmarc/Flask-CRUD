@@ -6,14 +6,7 @@ class Config(object):
 
     SESSION_COOKIE_SECURE = True
 
-    DIALECT = 'mysql'
-    DRIVER = 'pymysql'
-    USERNAME = 'root'
-    PASSWORD = ''
-    HOST = '127.0.0.1'
-    PORT = 3306
-    DATABASE = 'digital_leads_dados'
-    CHARSET = 'utf8'
+    
 
 class ProductionConfig(Config):
     pass

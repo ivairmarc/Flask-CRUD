@@ -1,8 +1,8 @@
 from database.database import Base
 from sqlalchemy import Column, Integer, ForeignKey, String
+from flask_login import UserMixin
 
-
-class Users(Base):
+class Users(UserMixin, Base):
     """ status 1 = Ativo """
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True, autoincrement=True)
