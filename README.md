@@ -4,23 +4,7 @@
 Nesse projeto vc encontrará a criação de usuarios com relacionamento de grupos.
 Foi desenvolvido pensando no relacionamento N:N na criação de usuário.
 
-+----------------+     +-----------------+     +----------------+
-|     User       |     |   UserGroups    |     |     Group      |
-+----------------+     +-----------------+     +----------------+
-| id: Integer    |     | id_user: Integer|     | id: Integer    |
-| email: String  |     | id_group: Integer|    | name: String   |
-| name: String   |     +-----------------+     | note: String   |
-| password: String|     |                 |     | status: Integer|
-| status: Integer |     +-----------------+     +----------------+
-+----------------+                    |
-        |                             |
-        |                             |
-        |                             |
-        |                             |
-        |                             |
-        +-----------------------------+
-                   (many-to-many)
-
+![alt text](/img/UML_user.png)
 
 
 ## Getting started
