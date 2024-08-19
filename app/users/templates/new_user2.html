@@ -12,9 +12,9 @@
    
       {{ render_field(form.email, input_attrs='class=form-control name=email') }}
     
-      {{ render_field(form.password, input_attrs='class=form-control name=password') }}
+      {{ render_field(form.password, input_attrs='class=form-control name=password type=password') }}
     
-      {{ render_field(form.confirm, input_attrs='class=form-control name=confirm') }}
+      {{ render_field(form.confirm, input_attrs='class=form-control name=confirm type=password') }}
     
       {{ render_field(form.status, input_attrs='type=checkbox value=1 name=status') }}
     </div>
