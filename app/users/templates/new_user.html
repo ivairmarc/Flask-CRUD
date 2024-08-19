@@ -3,6 +3,7 @@
 {% block content %}
 <h2>Cadastro de Usuário</h2>
 <form method="post">
+    
     <div class="row">
         <div class="form-col col-md-auto">
             <label for="username">Nome de Usuário:</label><br>
@@ -22,11 +23,13 @@
             <label for="group-search">Localizar:</label>
             <input type="text" id="group-search" onkeyup="filterGroups()" placeholder="Localizar grupos..."><br>
             <label for="groups">Groups:</label><br>
-            <select id="group-list" name="groups" multiple size="5">
-                {% for group in groups %}
-                <option value="{{ group.id }}">{{ group.name }}</option>
-                {% endfor %}
-            </select><br>
+            <div class="multi_select_box">
+                <select class="multi_select" id="group-list" name="groups" multiple size="5">
+                    {% for group in groups %}
+                    <option value="{{ group.id }}">{{ group.name }}</option>
+                    {% endfor %}
+                </select><br>
+        </div>
         </div>
     </div>
     <input type="submit" value="Cadastrar">

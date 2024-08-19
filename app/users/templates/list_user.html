@@ -15,7 +15,7 @@
                 <th scope="col">Usuario</th>
                 <th>E-mail</th>
                 <th>Ativo</th>
-                <th>Grupo</th>
+                <th>Detalhes</th>
                 <th>Editar</th>
                 <th>Deletar</th>
             </tr>
@@ -26,16 +26,11 @@
                     <td>{{ user.name }}</td> 
                     <td>{{ user.email }}</td>
                     {% if user.status == 1 %}
-                        <td>Sim</td>
+                    <td><i class="fas fa-fw fa-check text-success"></i></td>
                     {% else %}
-                        <td>Não</td>
+                    <td><i class="fas fa-fw fa-times text-danger"></i></td>
                     {% endif %}
-                    {% for g in group %}
-                        {% if g.id == user.group %}
-                            <td>{{ g.name }}</td>
-                        {% endif %}
-                    {% endfor %}
-                    
+                    <td><a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-eye"></i></a></td>                                              
                     <td><a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-wrench"></i></a></td>                                  
                     <td><a href="{{ url_for('users.delete_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
                 </tr>

@@ -2,6 +2,7 @@ from app.users.user_model import Users
 from app.groups.group_model import Groups
 from app.users.forms import NewUser
 from app.database import db_session
+from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user
 from flask import (
     Blueprint, 
@@ -13,6 +14,7 @@ from flask import (
 
 user_route = Blueprint('users', __name__, template_folder='templates')
 login_manager = LoginManager()
+csrf = CSRFProtect()
 
 
 @login_manager.user_loader
@@ -84,8 +86,8 @@ def new_user():
 @user_route.route('/')
 def list_users():
     users = Users.query.all()
-    group = Groups.query.all()
-    return render_template('list_user.html', users=users, group=group)
+    #group = Groups.query.all()
+    return render_template('list_user.html', users=users)
 
 
 @user_route.route('/<int:user_id>/edit', methods=['PUT'])

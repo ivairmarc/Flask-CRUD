@@ -5,6 +5,7 @@
 
 {% from "_formhelpers.html" import render_field %}
 <form method=post action="/users/create">
+  {{ form.hidden_tag() }} <!-- Token CSRF no template -->
   <dl>
     {{ render_field(form.name) }}
     {{ render_field(form.email) }}
