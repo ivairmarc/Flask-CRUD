@@ -2,7 +2,9 @@
 
 
 Nesse projeto vc encontrará 
+
  - criação de usuarios com relacionamento de grupos.
+
 Foi desenvolvido pensando no relacionamento N:N na criação de usuário.
 
 ![alt text](/img/UML_user.png)
