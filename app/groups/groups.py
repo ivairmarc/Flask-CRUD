@@ -8,7 +8,7 @@ from flask import (
     render_template)
 
 
-group_route = Blueprint('groups', __name__)
+group_route = Blueprint('groups', __name__, template_folder='templates')
 
 @group_route.route('/create', methods=['GET', 'POST'])
 def new_group():

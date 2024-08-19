@@ -29,6 +29,7 @@ def init_db():
     import app.groups.group_model
     import app.product.product_model
 
-
+    from .create_database import create_db
+    create_db()
     Base.metadata.create_all(bind=engine)
     

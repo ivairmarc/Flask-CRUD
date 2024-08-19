@@ -1,7 +1,9 @@
 from app.database import Base
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
 
 
+# Modelagem da tabela Groups
 class Groups(Base):
     __tablename__ = 'groups'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -9,6 +11,9 @@ class Groups(Base):
     note = Column(String(100))
     status = Column(Integer)
    
+    # Relacionamento bidirecional com a tabela Users
+    users = relationship('Users', secondary='user_groups', back_populates='groups')
+
     def __repr__(self):
-        return self.name
+        return f'<Group {self.name}>'
     

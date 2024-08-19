@@ -11,7 +11,7 @@ from flask import (
     render_template)
 
 
-user_route = Blueprint('users', __name__)
+user_route = Blueprint('users', __name__, template_folder='templates')
 login_manager = LoginManager()
 
 
@@ -51,19 +51,31 @@ def new_user2():
 @user_route.route('/create', methods=['GET', 'POST'])
 def new_user():
     groups = Groups.query.all()
+
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
-        status = request.form.get('status')
-        if status == None:
-            status = 0
-        group_id = request.form.get('group')
-        new_user = Users(name=name, email=email, password=password, status=status, group=group_id)
+        status = int(request.form.get('status', 0))
+        
+        # Recupera o ID do grupo
+        groups_id = request.form.getlist('groups')
+
+        # Cria um novo usuario
+        new_user = Users(name=name, email=email, password=password, status=status)
+
         db_session.add(new_user)
         db_session.commit()
+
+        # Associa o usuário aos grupo selecionado
+        for group_id in groups_id:
+            if group_id:
+                group = Groups.query.get(group_id)
+                if group:
+                    new_user.groups.append(group)
+        db_session.commit()
         
-        #return redirect(url_for('user_route.list_users'))
+        return redirect(url_for('users.list_users'))
     
     return render_template('new_user.html', groups=groups)
 
