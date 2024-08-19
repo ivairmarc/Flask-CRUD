@@ -71,14 +71,14 @@
 
   .multi_select_box{
     width: 400px;
-    margin: 80px auto;
+    
   }
   
   .multi_select_box select{
-    width: 100px;
+    width: 200px;
 
   }
-  
+
   [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important;
   }

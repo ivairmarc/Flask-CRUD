@@ -2,7 +2,7 @@ from wtforms import (
     BooleanField, 
     PasswordField, 
     validators, 
-    SelectField, 
+    SelectMultipleField, 
     StringField,
 
 )
@@ -14,14 +14,14 @@ from app.groups.group_model import Groups
 class NewUser(FlaskForm):
     def __init__(self, *args, **kwargs):
         super(NewUser, self).__init__(*args, **kwargs)
-        self.group.choices = [(g.id, g.name) for g in Groups.query.all()]
+        self.groups.choices = [(g.id, g.name) for g in Groups.query.all()]
 
-    name = StringField('Nome', [validators.Length(min=4, max=98)])
-    email = StringField('email', [validators.Length(min=6, max=98)])
-    password = PasswordField('password', [
+    name = StringField('Nome', [validators.Length(min=4, max=30), validators.DataRequired()],  )
+    email = StringField('email', [validators.Length(min=6, max=30), validators.DataRequired()], )
+    password = PasswordField('Senha', [
         validators.Length(min=8, max=40),
-        validators.EqualTo('confirm', message='Senha deve ser igual')
+        validators.EqualTo('confirm', message='Senha deve ser igual'), validators.DataRequired()
         ])
-    confirm = PasswordField('Repeat Password')
+    confirm = PasswordField('Repita a Senha', validators=[DataRequired()])
     status = BooleanField('Ativo')
-    group = SelectField('Grupo', coerce=int, validators=[DataRequired()])
+    groups = SelectMultipleField('Grupos', coerce=int, validators=[DataRequired()])

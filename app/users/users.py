@@ -39,12 +39,24 @@ def new_user2():
 
     if request.method == 'POST' and form.validate():
         
-        user = Users(form.name.data, form.email.data, form.password.data, form.status.data, form.group.data) 
-
-        new_user = Users(user)
+        new_user = Users(
+            name=form.name.data, 
+            email=form.email.data, 
+            password=form.password.data, 
+            status=form.status.data) 
+        
         db_session.add(new_user)
         db_session.commit()
-        
+
+        groups_id = form.groups.data
+        # Associa o usuário aos grupo selecionado
+        for group_id in groups_id:
+            if group_id:
+                group = Groups.query.get(group_id)
+                if group:
+                    new_user.groups.append(group)
+        db_session.commit()
+
         return redirect(url_for('user_route.list_users'))
     
     return render_template('new_user2.html', form=form)

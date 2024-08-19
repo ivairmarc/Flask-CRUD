@@ -19,17 +19,17 @@
             <label for="status"> Ativo</label><br>
         </div>
     
-        <div class="from-col col-md-auto">
-            <label for="group-search">Localizar:</label>
-            <input type="text" id="group-search" onkeyup="filterGroups()" placeholder="Localizar grupos..."><br>
-            <label for="groups">Groups:</label><br>
+        <div class="form-col col-md-auto">
+            <label for="groups">Grupos:</label><br>
+            <input type="text" id="group-search" onkeyup="filterGroups()" placeholder="Localizar grupos...">
+            
             <div class="multi_select_box">
                 <select class="multi_select" id="group-list" name="groups" multiple size="5">
                     {% for group in groups %}
                     <option value="{{ group.id }}">{{ group.name }}</option>
                     {% endfor %}
-                </select><br>
-        </div>
+                </select>
+            </div>
         </div>
     </div>
     <input type="submit" value="Cadastrar">
@@ -39,4 +39,5 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/search_group.js') }}"></script>
+<script src="{{ url_for('static', filename='js/validate_form.js') }}"></script>
 {% endblock %}
