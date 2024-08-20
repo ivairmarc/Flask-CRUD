@@ -1,4 +1,4 @@
-from .view import user_route, csrf
+from .views import user_route, csrf
 
 
 def init_app(app):

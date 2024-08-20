@@ -1,4 +1,4 @@
-from .accounts import account_route, csrf, login_manager
+from .views import account_route, csrf, login_manager
 
 
 def init_app(app):
