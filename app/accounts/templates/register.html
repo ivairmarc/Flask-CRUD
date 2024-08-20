@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <form class="user" method="post">
+       
+        <div class="form-group row">
+            
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label for="{{ user_form.username.id_for_label }}">Usuário: </label>
+                
+            </div>
+            <div class="col-sm-6">
+                <label for="{{ user_form.email.id_for_label }}">Email: </label>
+               
+            </div>
+        </div>
+        <div class="form-group row">
+            
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label for="{{ user_form.password1.id_for_label }}">Senha: </label><br>
+               
+            </div>
+            
+            <div class="col-sm-6">
+                <label for="{{ user_form.password2.id_for_label }}">Confirmação de senha: </label>
+                
+            </div>
+        </div>
+        <input type="submit" value="Cadastrar" class="btn btn-primary btn-user btn-block">
+        <hr>
+        
+    </form>
+   
+    <div class="text-center">
+        <a class="small" href="forgot-password.html">Forgot Password?</a>
+    </div>
+    <div class="text-center">
+        <a class="small" href="">Already have an account? Login!</a>
+    </div>
+
+{% endblock %}

@@ -3,8 +3,7 @@ from wtforms import (
     PasswordField, 
     validators, 
     SelectMultipleField, 
-    StringField,
-
+    StringField
 )
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Email

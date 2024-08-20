@@ -1,4 +1,4 @@
-from .groups import group_route
+from .view import group_route
 
 
 def init_app(app):

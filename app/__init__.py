@@ -5,17 +5,19 @@ from jinja2 import FileSystemLoader, Environment
 from app import (
     users, 
     groups, 
-    home
+    home,
+    accounts
 )
 
 
 def CreateApp():
     app = Flask(__name__)
     
+    
     users.init_app(app)
     groups.init_app(app)
     home.init_app(app)
-
+    accounts.init_app(app)
     app.config.from_object('app.config.DevelopmentConfig')
     
     with app.app_context():

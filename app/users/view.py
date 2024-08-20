@@ -3,24 +3,22 @@ from app.groups.group_model import Groups
 from app.users.forms import NewUser
 from app.database import db_session
 from flask_wtf.csrf import CSRFProtect
-from flask_login import LoginManager, login_user
-from flask import (
-    Blueprint, 
-    request, 
-    redirect, 
-    url_for, 
-    render_template)
+from flask_login import login_required
+from flask import Blueprint
+from flask import request
+from flask import redirect 
+from flask import url_for
+from flask import render_template
+from werkzeug.security import generate_password_hash
 
 
 user_route = Blueprint('users', __name__, template_folder='templates')
-login_manager = LoginManager()
+
 csrf = CSRFProtect()
 
 
-@login_manager.user_loader
-def user_loader(id):
-    user = db_session.query(Users).filter_by(id=id).first()
-    return user
+def unauthorized():
+    return redirect(url_for('login.login'))
 
 
 @user_route.teardown_request
@@ -34,16 +32,20 @@ def page_not_found(error):
 
 
 @user_route.route('/create2', methods=['GET', 'POST'])
+@login_required
 def new_user2():
     form = NewUser(request.form)
 
     if request.method == 'POST' and form.validate():
         
-        new_user = Users(
-            name=form.name.data, 
-            email=form.email.data, 
-            password=form.password.data, 
-            status=form.status.data) 
+        name=form.name.data
+        email=form.email.data 
+        password=form.password.data 
+        status=form.status.data
+
+        password=generate_password_hash(password, method='pbkdf2:sha256')
+
+        new_user = Users( name=name, email=email, password=password, status=status) 
         
         db_session.add(new_user)
         db_session.commit()
@@ -63,6 +65,7 @@ def new_user2():
 
 
 @user_route.route('/create', methods=['GET', 'POST'])
+@login_required
 def new_user():
     groups = Groups.query.all()
 
@@ -96,6 +99,7 @@ def new_user():
 
 # para chave add /<param>
 @user_route.route('/')
+@login_required
 def list_users():
     users = Users.query.all()
     #group = Groups.query.all()
@@ -103,10 +107,12 @@ def list_users():
 
 
 @user_route.route('/<int:user_id>/edit', methods=['PUT'])
+@login_required
 def update_user(user_id):
     ...
 
 
 @user_route.route('/<int:user_id>/delete', methods=['DELETE'])
+@login_required
 def delete_user(user_id):
     ...
