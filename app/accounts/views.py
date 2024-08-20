@@ -8,7 +8,7 @@ from flask_login import LoginManager
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 from app.users.user_model import Users
 from .forms import LoginForm
 from app.database import db_session
@@ -55,3 +55,15 @@ def valida_login(email, passwd):
         return True
     else:
         return False
+    
+
+def valida(func):
+
+    def valida_login(email, passwd):
+        user = db_session.query(Users).filter_by(email=email).first()
+
+        if check_password_hash(user.password, passwd):
+            login_user(user)
+            return True
+        
+    return valida_login()
