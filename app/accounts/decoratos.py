@@ -7,15 +7,16 @@ from ..users.user_model import Users  # Ajuste conforme sua estrutura
 from ..database import db_session  # Ajuste conforme sua estrutura
 from .forms import LoginForm
 
+
 def validate(func):
     @wraps(func)
     def validate_login(*args, **kwargs):
         if request.method == 'POST':
-            email, password = func(*args, **kwargs)
+            email, password, remember = func(*args, **kwargs)
             user = db_session.query(Users).filter_by(email=email).first()
 
             if user and check_password_hash(user.password, password):
-                login_user(user)
+                login_user(user, remember=remember)
                 return redirect(url_for('home.index'))
             else:
                 flash('Invalid email or password', 'danger')

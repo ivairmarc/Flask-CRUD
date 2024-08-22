@@ -17,7 +17,6 @@ from app.database import db_session
 from .decoratos import validate
 
 
-
 account_route = Blueprint('login', __name__, template_folder='templates')
 login_manager = LoginManager()
 login_manager.login_view='login.login'
@@ -37,7 +36,9 @@ def login():
     if request.method == 'POST':
         email = form.email.data
         password = form.password.data
-        return email, password  # This is passed to the decorator for processing
+        remember = True if form.remember.data else False
+
+        return email, password, remember
                
     return render_template('login.html', form=form)
 

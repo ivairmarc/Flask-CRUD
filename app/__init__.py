@@ -13,7 +13,6 @@ from app import (
 def CreateApp():
     app = Flask(__name__)
     
-    
     users.init_app(app)
     groups.init_app(app)
     home.init_app(app)
