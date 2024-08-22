@@ -79,6 +79,8 @@
 
   }
 
+
+
   [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important;
   }
@@ -170,13 +172,13 @@
   }
   
   a {
-    color: #4e73df;
+    color: #ffffff;
     text-decoration: none;
     background-color: transparent;
   }
   
   a:hover {
-    color: #224abe;
+    color: #080808;
     text-decoration: underline;
   }
   
@@ -4111,7 +4113,7 @@
   .tab-content > .active {
     display: block;
   }
-  
+  /* menu top */
   .navbar {
     position: relative;
     display: flex;
@@ -4119,6 +4121,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem;
+    background-color: #0080a7;
   }
   
   .navbar .container,
@@ -9911,7 +9914,7 @@
   }
   
   .bg-gradient-primary {
-    background-color: #4eb718;
+    background-color: #1c4456;
     /*background-image: linear-gradient(180deg, #1c284c 10%, #224abe 100%);*/
     background-size: cover;
   }
@@ -10179,7 +10182,7 @@
   }
   
   .topbar {
-    height: 3.375rem;
+    height: 2.375rem;
   }
   
   .topbar #sidebarToggleTop {
@@ -10319,11 +10322,11 @@
   }
   
   .topbar.navbar-light .navbar-nav .nav-item .nav-link {
-    color: #d1d3e2;
+    color: #fff;
   }
   
   .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-    color: #b7b9cc;
+    color: #000;
   }
   
   .topbar.navbar-light .navbar-nav .nav-item .nav-link:active {
@@ -10460,6 +10463,7 @@
   }
   
   .sidebar .sidebar-brand {
+    
     height: 4.375rem;
     text-decoration: none;
     font-size: 1rem;

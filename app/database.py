@@ -11,7 +11,7 @@ load_dotenv()
 connection_string = os.getenv('DATABASE_URI', '')
 
 # Configurar o SQLAlchemy
-engine = create_engine(connection_string, echo=False)
+engine = create_engine(connection_string, echo=False, pool_size=20, max_overflow=0)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
