@@ -3,15 +3,18 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
+from flask import flash
 from flask_wtf import CSRFProtect
 from flask_login import LoginManager
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import check_password_hash
+from functools import wraps
 from app.users.user_model import Users
 from .forms import LoginForm
 from app.database import db_session
+from .decoratos import validate
 
 
 
@@ -28,15 +31,14 @@ def user_loader(id):
 
 
 @account_route.route('/', methods=['GET', 'POST'])
+@validate
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST':
-        
-        result = valida_login(form.email.data, form.password.data)
-        if result == True:
-            
-            return redirect(url_for('home.index'))
-       
+        email = form.email.data
+        password = form.password.data
+        return email, password  # This is passed to the decorator for processing
+               
     return render_template('login.html', form=form)
 
 
@@ -45,25 +47,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login.login'))
-
-
-def valida_login(email, passwd):
-    user = db_session.query(Users).filter_by(email=email).first()
-
-    if check_password_hash(user.password, passwd):
-        login_user(user)
-        return True
-    else:
-        return False
-    
-
-def valida(func):
-
-    def valida_login(email, passwd):
-        user = db_session.query(Users).filter_by(email=email).first()
-
-        if check_password_hash(user.password, passwd):
-            login_user(user)
-            return True
-        
-    return valida_login()
