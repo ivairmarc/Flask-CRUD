@@ -17,7 +17,7 @@ Foi desenvolvido pensando no relacionamento N:N na criação de usuário.
 
 instale as dependências em requirements.txt.
 
-rode create_db.py em app para criar o banco de dados.
+configure uma conexão com o banco em um arquivo .env com a seguinte variavel = DATABASE_URI='mysql+pymysql://USER:PASSWORD@IP:PORT/DBNAME?charset=utf8'
 
-depois rode o run.py.
+depois rode o app.py.
 
