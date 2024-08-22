@@ -9,6 +9,9 @@ Foi desenvolvido pensando no relacionamento N:N na criação de usuário.
 
 ![alt text](/img/UML_user.png)
 
+# Home
+
+![alt text](/img/home.png)
 
 ## Getting started
 
