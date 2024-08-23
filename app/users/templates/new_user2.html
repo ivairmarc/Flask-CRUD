@@ -11,12 +11,18 @@
       {{ render_field(form.name, input_attrs='class=form-control name=name') }}
    
       {{ render_field(form.email, input_attrs='class=form-control name=email') }}
+
+      {{ render_field(form.position, input_attrs='class=form-control name=position') }}
     
       {{ render_field(form.password, input_attrs='class=form-control name=password type=password') }}
     
       {{ render_field(form.confirm, input_attrs='class=form-control name=confirm type=password') }}
     
       {{ render_field(form.status, input_attrs='type=checkbox value=1 name=status') }}
+
+      {{ render_field(form.passwd_expires, input_attrs='type=checkbox value=1 name=passwd_expires') }}
+      {{ render_field(form.passwd_change_befor, input_attrs='type=checkbox value=1 name=passwd_change_befo') }}
+
     </div>
     <div class="form-col col-md-auto">
       {{ form.groups.label(class="form-label") }}

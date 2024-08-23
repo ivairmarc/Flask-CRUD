@@ -6,18 +6,21 @@ from flask import redirect
 from flask import url_for 
 from flask import render_template
 from flask_login import login_required
+from flask_wtf.csrf import CSRFProtect
+from .forms import NewGroup
 
 
 group_route = Blueprint('groups', __name__, template_folder='templates')
-
+csrf = CSRFProtect()
 
 @group_route.route('/create', methods=['GET', 'POST'])
 @login_required
 def new_group():
+    form = NewGroup(request.form)
     if request.method == 'POST':
-        name = request.form['name']
-        note = request.form['note']
-        status = request.form['status']
+        name = form.name.data
+        note = form.note.data
+        status = form.status.data
                 
         new_group = Groups(name=name, note=note, status=status)
         db_session.add(new_group)
@@ -25,7 +28,7 @@ def new_group():
         
         return redirect(url_for('groups.list_groups'))
     
-    return render_template('new_group.html')
+    return render_template('new_group.html', form=form)
 
 
 @group_route.route('/')

@@ -17,6 +17,9 @@ class NewUser(FlaskForm):
 
     name = StringField('Nome', [validators.Length(min=4, max=30), validators.DataRequired()],  )
     email = StringField('email', [validators.Length(min=6, max=30), validators.DataRequired()], )
+    position = StringField('Cargo', [validators.Length(min=6, max=30)])
+    passwd_expires = BooleanField('Expira Senha')
+    passwd_change_befor = BooleanField('Mudar no próximo login')
     password = PasswordField('Senha', [
         validators.Length(min=8, max=40),
         validators.EqualTo('confirm', message='Senha deve ser igual'), validators.DataRequired()

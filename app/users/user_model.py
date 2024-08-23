@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey, String
+from sqlalchemy import Column, Integer, ForeignKey, String, Date
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 from app.database import Base
@@ -18,8 +18,12 @@ class Users(UserMixin, Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(100), unique=True, nullable=False)
     name = Column(String(100), nullable=False)
+    position = Column(String(100), nullable=False)
+    passwd_expires = Column(String(1), default='N')
+    passwd_change_befor = Column(String(1), default='N')
     password = Column(String(500), nullable=False)
     status = Column(Integer)
+    create_at = Column(Date())
     
     # Relacionamento bidirecional com a tabela Groups
     groups = relationship('Groups', secondary='user_groups', back_populates='users')

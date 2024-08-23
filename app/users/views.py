@@ -10,6 +10,7 @@ from flask import redirect
 from flask import url_for
 from flask import render_template
 from werkzeug.security import generate_password_hash
+from datetime import date
 
 
 user_route = Blueprint('users', __name__, template_folder='templates')
@@ -41,11 +42,23 @@ def new_user2():
         name=form.name.data
         email=form.email.data 
         password=form.password.data 
-        status=form.status.data
+        status= 1 if form.status.data else 0
+        position = form.position.data
+        passwd_expires = 'S' if form.passwd_expires.data else 'N'
+        passwd_change_befor = 'S' if form.passwd_change_befor.data else 'N'
 
         password=generate_password_hash(password, method='pbkdf2:sha256')
 
-        new_user = Users( name=name, email=email, password=password, status=status) 
+        new_user = Users( 
+                        name=name, 
+                        email=email, 
+                        position=position, 
+                        passwd_expires=passwd_expires, 
+                        passwd_change_befor=passwd_change_befor,
+                        password=password, 
+                        status=status,
+                        create_at=date.today()
+                        ) 
         
         db_session.add(new_user)
         db_session.commit()
@@ -59,7 +72,7 @@ def new_user2():
                     new_user.groups.append(group)
         db_session.commit()
 
-        return redirect(url_for('user_route.list_users'))
+        return redirect(url_for('users.list_users'))
     
     return render_template('new_user2.html', form=form)
 

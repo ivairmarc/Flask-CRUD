@@ -15,7 +15,7 @@ def validate(func):
             email, password, remember = func(*args, **kwargs)
             user = db_session.query(Users).filter_by(email=email).first()
 
-            if user and check_password_hash(user.password, password):
+            if user and check_password_hash(user.password, password) and user.status == 1:
                 login_user(user, remember=remember)
                 return redirect(url_for('home.index'))
             else:
