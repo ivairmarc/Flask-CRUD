@@ -9,9 +9,13 @@ Foi desenvolvido pensando no relacionamento N:N na criação de usuário.
 
 ![alt text](/img/UML_user.png)
 
-# Home
+# home
 
-![alt text](/img/home.png)
+
+# Cadastro de usuários
+
+![alt text](/img/cad_user.png)
+
 
 ## Getting started
 
