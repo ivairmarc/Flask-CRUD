@@ -21,3 +21,6 @@ configure uma conexão com o banco em um arquivo .env com a seguinte variavel = 
 
 depois rode o app.py.
 
+
+# Oque vem Por aí
+

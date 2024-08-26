@@ -1851,6 +1851,7 @@
     background-clip: padding-box;
     border: 1px solid #d1d3e2;
     border-radius: 0.35rem;
+    box-shadow: 0 2px 4px 0 rgba(70, 193, 224, 0.2), 0 3px 10px 0 rgba(49, 181, 221, 0.19);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
   
@@ -1875,7 +1876,7 @@
     background-color: #fff;
     border-color: #bac8f3;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(78, 177, 223, 0.25);
   }
   
   .form-control::-webkit-input-placeholder {
