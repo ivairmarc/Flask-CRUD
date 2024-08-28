@@ -17,7 +17,7 @@ Foi desenvolvido pensando no relacionamento N:N na criação de usuário.
 
 ![alt text](/img/users.png)
 
-# Cadastro de usuários
+# Create users
 
 ![alt text](/img/cad_user.png)
 
