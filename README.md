@@ -13,11 +13,17 @@ Foi desenvolvido pensando no relacionamento N:N na criação de usuário.
 
 ![alt text](/img/login.png)
 
+# Users list
+
+![alt text](/img/users.png)
 
 # Cadastro de usuários
 
 ![alt text](/img/cad_user.png)
 
+# Permissions list
+
+![alt text](/img/permissions.png)
 
 ## Getting started
 
