@@ -58,5 +58,9 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/pagination-group.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pagination-table.js') }}"></script>
+<script>
+    // Inicializando para uma tabela específica (exemplo para grupos)
+    initPaginationAndSearch('datatable', 'advanced-search-input', 'advanced-search-button');
+</script>
 {% endblock %}
