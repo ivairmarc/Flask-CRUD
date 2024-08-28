@@ -1,25 +1,36 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
     
-        <h5 class="card-title">Lista de Grupos</h5>
-        {% if groups|length > 0 %}
-        <p class="card-text">
-        Aqui está a lista de <code>Grupos</code>
-        cadastrados.
-        </p>
-        <table class="table table-hover">
+    <h5 class="card-title">Lista de Grupos</h5>
+    <div class="text-right">
+        <a class="btn btn-primary"
+        href="{{ url_for('groups.new_group') }}">
+        Cadastrar Grupos
+        </a>
+    </div>
+    {% if groups|length > 0 %}
+    <p class="card-text">
+    Aqui está a lista de <code>Grupos</code> cadastrados.
+    </p>
+    <div class="input-group mb-4">
+        <input type="text" class="form-control col-md-5" id="advanced-search-input" placeholder="Pesquise..." />
+        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" id="advanced-search-button" type="button">
+          <i class="fa fa-search"></i>
+        </button>
+    </div>
+    <div id="datatable">
+        <table class="table table-hover table-sm">
             <thead>
             <tr>      
-                <th scope="col">Usuario</th>
+                <th scope="col">Nome</th>
                 <th>Observação</th>
                 <th>Editar</th>
                 <th>Detalhes</th>
                 <th>Deletar</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="table-body">
             {% for group in groups %}
                 <tr>
                     <td>{{ group.name }}</td> 
@@ -28,20 +39,24 @@
                     <td><a href="" class="btn"><i class="fas fa-fw fa-eye"></i></a></td>                                  
                     <td><a href="" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
                 </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <div class="text-center mt-5 mb-5 jumbotron">
-        <h5>Nenhum <code>Grupo</code> cadastrado ainda.</h5>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-    {% endif %}
-    <hr />
-    <div class="text-right">
-        <a class="btn btn-primary"
-        href="{{ url_for('groups.new_group') }}">
-        Cadastrar Grupos
-        </a>
-    </div>
+<hr />
+<!-- Controles de Paginação -->
+<div id="pagination-controls" class="pagination text-center">
+    <button id="prev-page" class="btn btn-primary">Anterior</button>
+    <span id="page-number"></span>
+    <button id="next-page" class="btn btn-primary">Próximo</button>
+</div>
+{% else %}
+<div class="text-center mt-5 mb-5 jumbotron">
+    <h5>Nenhum <code>Grupo</code> cadastrado ainda.</h5>
+</div>
+{% endif %}
+{% endblock %}
 
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/pagination-group.js') }}"></script>
 {% endblock %}
