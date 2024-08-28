@@ -6,12 +6,18 @@ from flask import redirect
 from flask import url_for 
 from flask import render_template
 from flask_login import login_required
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect, CSRFError
 from .forms import NewGroup, NewPermissions
 
 
 group_route = Blueprint('groups', __name__, template_folder='templates')
 csrf = CSRFProtect()
+
+
+@group_route.errorhandler(CSRFError)
+def handle_csrf_error(e):
+    return render_template('csrf_error.html', reason=e.description), 400
+
 
 @group_route.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -65,7 +71,7 @@ def new_permission():
 @group_route.route('/permissions')
 @login_required
 def list_permissions():
-    permissions = Permissions.query.all()
+    permissions = Permissions.query.order_by(Permissions.module).all()
     return render_template('permissions.html', permissions=permissions)
 
 
