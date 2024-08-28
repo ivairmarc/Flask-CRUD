@@ -22,7 +22,7 @@ class Permissions(Base):
     __tablename__ = 'permissions'
     id = Column(Integer, primary_key=True, autoincrement=True)
     module = Column(String(30), nullable=False)
-    permission = Column(String(100), nullable=False, unique=True)
+    permission = Column(String(100), nullable=False)
     name = Column(String(100), nullable=False)
 
     def __repr__(self):

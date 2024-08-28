@@ -8,15 +8,15 @@ class NewGroup(FlaskForm):
     status = BooleanField('Ativo')
 
 
-class PermisionsGroup(FlaskForm):
+class NewPermisionsGroup(FlaskForm):
     id_group = IntegerField()
-    modulo_per = StringField('Módulo')
     permission = StringField('Permissão')
-    name_per = StringField('Nome da permissão')
     habilite_per = BooleanField('Habilita')
     allowcustody_per = BooleanField('Permite custódia')
     note = StringField('Observação')
 
 
-class Permissions(FlaskForm):
-    ...
+class NewPermissions(FlaskForm):
+    module = StringField('Módulo')
+    permission = StringField('Permissão')
+    name = StringField('Nome Permissão')

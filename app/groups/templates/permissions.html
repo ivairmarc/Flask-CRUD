@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+        <h5 class="card-title">Lista de Permissões</h5>
+        {% if permissions|length > 0 %}
+        <p class="card-text">
+        Aqui está a lista de <code>Permissões</code>
+        cadastradas.
+        </p>
+        <table class="table table-hover">
+            <thead>
+            <tr>      
+                <th scope="col">Módulo</th>
+                <th>Permissão</th>
+                <th>Nome</th>
+                <th>Detalhes</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in permissions %}
+                <tr>
+                    <td>{{ p.module }}</td> 
+                    <td>{{ p.permission }}</td>
+                    <td>{{ p.name }}</td>                           
+                    <td><a href="" class="btn"><i class="fas fa-fw fa-eye"></i></a></td>                                 
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="text-center mt-5 mb-5 jumbotron">
+        <h5>Nenhuma <code>Permisão</code> cadastrada ainda.</h5>
+    </div>
+    {% endif %}
+    <hr />
+    <div class="text-right">
+        <a class="btn btn-primary"
+        href="{{ url_for('groups.new_permission') }}">
+        Cadastrar Permissões
+        </a>
+    </div>
+
+{% endblock %}
