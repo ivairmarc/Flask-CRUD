@@ -29,8 +29,7 @@ function search(query) {
     const module = row.cells[0].textContent.toLowerCase();
     const permission = row.cells[1].textContent.toLowerCase();
     const name = row.cells[2].textContent.toLowerCase();
-    const searchPhrase = input.split(' in:');
-    const searchValue = searchPhrase[0].trim();
+
     let columnsToSearch = ['module', 'permission', 'name'];
     if (searchPhrase.length > 1) {
       columnsToSearch = searchPhrase[1].split(',').map(c => c.trim());
