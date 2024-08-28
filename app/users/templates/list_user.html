@@ -3,51 +3,51 @@
 
 {% block content %}
     
-        <h5 class="card-title">Lista de usuários</h5>
-        {% if users|length > 0 %}
-        <p class="card-text">
-        Aqui está a lista de <code>Usuários</code>
-        cadastrados.
-        </p>
-        <table class="table table-hover">
-            <thead>
-            <tr>      
-                <th scope="col">Usuario</th>
-                <th>E-mail</th>
-                <th>Ativo</th>
-                <th>Detalhes</th>
-                <th>Editar</th>
-                <th>Deletar</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.name }}</td> 
-                    <td>{{ user.email }}</td>
-                    {% if user.status == 1 %}
-                    <td><i class="fas fa-fw fa-check text-success"></i></td>
-                    {% else %}
-                    <td><i class="fas fa-fw fa-times text-danger"></i></td>
-                    {% endif %}
-                    <td><a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-eye"></i></a></td>                                              
-                    <td><a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-wrench"></i></a></td>                                  
-                    <td><a href="{{ url_for('users.delete_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <div class="text-center mt-5 mb-5 jumbotron">
-        <h5>Nenhum <code>Usuário</code> cadastrado ainda.</h5>
-    </div>
-    {% endif %}
-    <hr />
-    <div class="text-right">
-        <a class="btn btn-primary"
-        href="{{ url_for('users.new_user2') }}">
-        Cadastrar Usuários
-        </a>
-    </div>
+<h5 class="card-title">Lista de usuários</h5>
+{% if users|length > 0 %}
+<p class="card-text">
+Aqui está a lista de <code>Usuários</code>
+cadastrados.
+</p>
+<table class="table table-hover col-md-6">
+    <thead>
+    <tr>      
+        <th scope="col">Usuario</th>
+        <th>E-mail</th>
+        <th>Ativo</th>
+        <th>Detalhes</th>
+        <th>Editar</th>
+        <th>Deletar</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td> 
+            <td>{{ user.email }}</td>
+            {% if user.status == 1 %}
+            <td><i class="fas fa-fw fa-check text-success"></i></td>
+            {% else %}
+            <td><i class="fas fa-fw fa-times text-danger"></i></td>
+            {% endif %}
+            <td><a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-eye"></i></a></td>                                              
+            <td><a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-wrench"></i></a></td>                                  
+            <td><a href="{{ url_for('users.delete_user', user_id=user.id) }}" class="btn"><i class="fas fa-fw fa-trash"></i></a></td>                                  
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="text-center mt-5 mb-5 jumbotron">
+    <h5>Nenhum <code>Usuário</code> cadastrado ainda.</h5>
+</div>
+{% endif %}
+<hr />
+<div class="text-right">
+    <a class="btn btn-primary"
+    href="{{ url_for('users.new_user2') }}">
+    Cadastrar Usuários
+    </a>
+</div>
 
 {% endblock %}
