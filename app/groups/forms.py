@@ -1,4 +1,4 @@
-from wtforms import StringField, BooleanField, validators, TextAreaField
+from wtforms import StringField, BooleanField, validators, TextAreaField, IntegerField
 from flask_wtf import FlaskForm
 
 
@@ -9,4 +9,14 @@ class NewGroup(FlaskForm):
 
 
 class PermisionsGroup(FlaskForm):
+    id_group = IntegerField()
+    modulo_per = StringField('Módulo')
+    permission = StringField('Permissão')
+    name_per = StringField('Nome da permissão')
+    habilite_per = BooleanField('Habilita')
+    allowcustody_per = BooleanField('Permite custódia')
+    note = StringField('Observação')
+
+
+class Permissions(FlaskForm):
     ...

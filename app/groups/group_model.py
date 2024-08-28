@@ -16,18 +16,30 @@ class Groups(Base):
 
     def __repr__(self):
         return f'<Group {self.name}>'
-    
 
-class PermissionsGroup(Base):
-    __tablename__='permissions_group'
+    
+class Permissions(Base):
+    __tablename__ = 'permissions'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    id_group = Column(Integer, ForeignKey('groups.id'), nullable=False)
-    modulo_per = Column(String(30))
+    module = Column(String(30), nullable=False)
     permission = Column(String(100), nullable=False, unique=True)
-    name_per = Column(String(100))
-    habilite_per = Column(String(1), default='N')
-    allowcustody_per = Column(String(1), default='N')
-    note = Column(String(100))
+    name = Column(String(100), nullable=False)
 
     def __repr__(self):
-        return f'<Permission {self.name_per}>'
+        return f"<Permission(module='{self.module}', permission='{self.permission}', name='{self.name}')>"
+        
+
+class PermissionsGroup(Base):
+    __tablename__ = 'permissions_group'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    group_id = Column(Integer, ForeignKey('groups.id'), nullable=False)
+    permission_id = Column(Integer, ForeignKey('permissions.id'), nullable=False, unique=True)
+    habilite = Column(String(1), default='N', nullable=False)
+    allow_custody = Column(String(1), default='N', nullable=False)
+    note = Column(String(100))
+
+    permission_obj = relationship('Permissions', backref='permissions_groups', foreign_keys=[permission_id])
+
+    def __repr__(self):
+        return f"habilite='{self.habilite}', allow_custody='{self.allow_custody}')>"
+    

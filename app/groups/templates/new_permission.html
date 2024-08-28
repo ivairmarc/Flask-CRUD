@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Cadastro de Permissões</h2>
+<form method="post" >
+    {{ form.hidden_tag() }}
+
+    {{ form.modulo_per.label(class="form-label") }}
+    {{ form.modulo_per(class="form-control") }}
+    
+    {{ form.name_per.label(class="form-label") }}
+    {{ form.name_per(class="form-control") }}
+
+    {{ form.permission.label(class="form-label") }}
+    {{ form.permission(class="form-control") }}
+    
+    {{ form.note.label(class="form-label") }}
+    {{ form.note(class="form-control", row="2") }}
+
+    {{ form.habilite_per.label(class="form-label") }}
+    {{ form.habilite_per(type="checkbox", value="true") }}
+
+    {{ form.allowcustody_per.label(class="form-label") }}
+    {{ form.allowcustody_per(type="checkbox", value="true") }}
+    
+    <input type="submit" class="btn btn-success" value="Cadastrar" >
+</form>
+</body>
+</html>
+{% endblock %}
